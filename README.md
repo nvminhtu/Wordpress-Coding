@@ -10,3 +10,6 @@
 # WORDPRESS PLUGINS
 
 # WORDPRESS SNIPPETS
+
+# CSS3 snippets:
+* Expand CSS: https://codepen.io/thomas-eilermann/pen/grjEjE
