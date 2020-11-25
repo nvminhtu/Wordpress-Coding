@@ -18,5 +18,8 @@
 # AJAX in WORDPRESS:
 1. AJAX Wordpress Posts - filter by categories:
 https://dominykasgel.com/ajax-posts-filter/
+
 2. AJAX Wordpress Posts by Custom Fields
+https://itsmereal.com/simple-ajax-filter-search-for-wordpress/
+
 3. AJAX Load more Posts
