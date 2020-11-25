@@ -1,4 +1,7 @@
-Frontend: Show categories list
+
+In this chapter: We write down a function which user can change posts using select option (choose catgory) 
+
+Frontend: Show categories list (drop down or only listing categories) - It's up to your Frontend code.
 ```
 <div class="filter-wrap">
     <div class="category">
@@ -29,7 +32,9 @@ Frontend: Show categories list
 </div>
 ```
 
-Frontend: Show Results
+Frontend: Show Results - We declared `filtered-posts` - place to put your all data to show result of AJAX
+`get_template_part( 'template-parts/content-post' );`: This is your content of post (format or sthing....)
+
 ```
 <div class="filtered-posts">
 <?php
@@ -44,7 +49,13 @@ endif;
 </div>
 ```
 
-JS: Ajax Filter Code
+Javascript: Ajax Filter Code (write below your Frontend code - result)
+> In this place: we check the action `change` of selector ( category/ date). 
+category: taxonomy in wordpress
+date: attribute in wordpress
+> Then We write $.ajax and put all your query to `data`
+> the main is success: function(data) => we check if run well => show result with data of PHP code - we wrote above.
+
 ```
 jQuery(document).ready(function($){
 	jQuery( ".js-category, .js-date" ).on( "change", function() {
