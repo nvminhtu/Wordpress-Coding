@@ -13,3 +13,10 @@
 
 # CSS3 snippets:
 * Expand CSS: https://codepen.io/thomas-eilermann/pen/grjEjE
+
+
+# AJAX in WORDPRESS:
+1. AJAX Wordpress Posts - filter by categories:
+https://dominykasgel.com/ajax-posts-filter/
+2. AJAX Wordpress Posts by Custom Fields
+3. AJAX Load more Posts
