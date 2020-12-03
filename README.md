@@ -13,6 +13,7 @@
 
 # CSS3 snippets:
 * Expand CSS: https://codepen.io/thomas-eilermann/pen/grjEjE
+* Gallery Image (Hover Image and Transition): http://css3.bradshawenterprises.com/cfimg/
 
 
 # AJAX in WORDPRESS:
