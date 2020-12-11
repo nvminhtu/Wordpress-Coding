@@ -1,0 +1,101 @@
+jQuery(document).ready(function($) {
+			reno_loadmore_news();
+			function reno_loadmore_news(){
+				// var total_posts = 7;
+				$('.sc-search-news .loadmore').click(function(event) {
+					var loadmore = $(this);
+					var offset = loadmore.data('offset');
+					var totalpost = loadmore.data('totalpost');
+					var keyword = $('.search-input',$(this).parents('.sc-search-news')).val();
+					var category = $('#search-new-cat',$(this).parents('.sc-search-news')).val();
+					$.ajax({
+								type : "post",
+								dataType : "html",
+								async: false,
+								url : 'http://renovaclound-staging.tk/wp-admin/admin-ajax.php',
+								data : {
+										action: "newloadmore",
+										offset: offset,
+										keyword : keyword,
+										category : category
+								},
+								beforeSend: function(){
+										$('.sc-search-news .loadmore').addClass('spinner'); //add preLoad Spinner
+								},
+								success: function(response) {
+									if ( '' === response ) {
+												$('.sc-search-news .loadmore-btn').hide();
+										} else {
+											$('.sc-search-news .cat-must-go').append(response);
+											offset = offset + 3;
+											loadmore.data('offset',offset);
+											if(offset >= totalpost) {
+												$('.sc-search-news .loadmore-btn').hide();
+											}
+										}
+										// remove preLoad Spinner
+										$('.sc-search-news .loadmore').removeClass('spinner');
+								},
+								error: function( jqXHR, textStatus, errorThrown ){
+										console.log( 'The following error occured: ' + textStatus, errorThrown );
+								}
+					 });
+				});
+			}
+
+				reno_search_keyword();
+				function reno_search_keyword(){
+					$('.new-search-box').submit(function(event){
+						event.preventDefault();
+						reno_ajax_search($(this).parents('.sc-search-news'));
+					});
+				}
+				reno_search_category();
+				function reno_search_category(){
+					$('#search-new-cat').change(function(event){
+						event.preventDefault();
+						reno_ajax_search($(this).parents('.sc-search-news'));
+					});
+				}
+
+				function reno_ajax_search(object){
+
+						var offset = 3;
+						var keyword = $('.search-input',object).val();
+						var category = $('#search-new-cat',object).val();
+							console.log(keyword);
+						$.ajax({
+									type : "post",
+									dataType : "html",
+									async: false,
+									url : 'http://renovaclound-staging.tk/wp-admin/admin-ajax.php',
+									data : {
+											action: "newsearch",
+											offset: offset,
+											keyword : keyword,
+											category : category
+									},
+									beforeSend: function(){
+											$('.sc-search-news .loadmore').addClass('spinner'); //add preLoad Spinner
+									},
+									success: function(response) {
+										if ( '' === response ) {
+													// $('.sc-search-news .action-posts').hide();
+											} else {
+												$('.sc-search-news').empty();
+												$('.sc-search-news').append(response);
+											}
+											// remove preLoad Spinner
+											$('.sc-search-news .loadmore').removeClass('spinner');
+											reno_search_keyword();
+											reno_search_category();
+											reno_loadmore_news();
+									},
+									error: function( jqXHR, textStatus, errorThrown ){
+											console.log( 'The following error occured: ' + textStatus, errorThrown );
+									}
+						 });
+
+				}
+
+		});
