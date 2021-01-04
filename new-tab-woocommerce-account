@@ -1,0 +1,37 @@
+<?php
+/**
+ * @user fields for woocommerce
+ ** link edit: [site_url]/my-account/edit-account/
+ ** require woocommerce install
+ */
+
+/**
+ ** 01. Register new endpoints to use inside My Account page.
+ */
+add_action('init', 'my_account_new_endpoints');
+function my_account_new_endpoints() {
+    add_rewrite_endpoint('awards', EP_ROOT | EP_PAGES);
+}
+
+/**
+ ** 02. Get new endpoint content
+ */
+add_action('woocommerce_account_awards_endpoint', 'awards_endpoint_content');
+function awards_endpoint_content() {
+    echo 'awards content';
+}
+
+
+function my_account_menu_order() {
+    $menuOrder = array(
+        'orders'             => __( 'Your Orders', 'woocommerce' ),
+        'awards'             => __( 'Awards', 'woocommerce' ),
+        'downloads'          => __( 'Download', 'woocommerce' ),
+        'edit-address'       => __( 'Addresses', 'woocommerce' ),
+        'edit-account'    	=> __( 'Account Details', 'woocommerce' ),
+        'customer-logout'    => __( 'Logout', 'woocommerce' ),
+       'dashboard'          => __( 'Dashboard', 'woocommerce' )
+    );
+    return $menuOrder;
+}
+add_filter ( 'woocommerce_account_menu_items', 'my_account_menu_order' );
