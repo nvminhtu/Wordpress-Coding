@@ -1,0 +1,11 @@
+$args = array(
+					'posts_per_page'	=> -1,
+					'post_type'		=> 'showreel',
+					'meta_query'	=> array(
+						array(
+							'key' => 'feature_homepage',
+							'value' => 'yes',
+							'compare'	=> 'LIKE'
+						)
+					)
+				);
